@@ -7,6 +7,9 @@ jdbcdslog-exp is an experimental fork of jdbcdslog that:
 * is available in the maven central repository
 * supports Java 5 and above (you need to understand that the project should compile with jdk 1.5)
 (Of course, the original function does not change!)
+* now compile against JAVA7
+
+[![Build Status](https://secure.travis-ci.org/vannicaruso/jdbcdslog.png)](http://travis-ci.org/vannicaruso/jdbcdslog)
 
 if you want get more infos please see the original version of jdbcdslog at <http://code.google.com/p/jdbcdslog/>
 
