@@ -1,15 +1,13 @@
 package org.jdbcdslog;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.DriverPropertyInfo;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.sql.CommonDataSource;
 
 public class DriverLoggingProxy implements Driver {
 
@@ -109,6 +107,10 @@ public class DriverLoggingProxy implements Driver {
 
     public boolean jdbcCompliant() {
         return false;
+    }
+
+    public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return this.getParentLogger();
     }
 
 }

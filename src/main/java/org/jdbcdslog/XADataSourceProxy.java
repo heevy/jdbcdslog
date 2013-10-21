@@ -1,7 +1,12 @@
 package org.jdbcdslog;
 
+
+import javax.sql.CommonDataSource;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 public class XADataSourceProxy extends DataSourceProxyBase implements XADataSource, DataSource {
 
@@ -9,6 +14,15 @@ public class XADataSourceProxy extends DataSourceProxyBase implements XADataSour
 
     public XADataSourceProxy() throws JDBCDSLogException {
         super();
+    }
+
+
+    public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+        return this.getParentLogger();
+    }
+
+    public Object unwrap(Class iface) throws SQLException {
+        return null;
     }
 
 }
