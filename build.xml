@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jdbcdslog" default="all">
-  
+    <presetdef name="javac">
+        <javac includeantruntime="false" />
+    </presetdef>
 
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
