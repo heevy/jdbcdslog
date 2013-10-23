@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jdbcdslog" default="all">
-    <presetdef name="javac">
-        <javac includeantruntime="false" />
-    </presetdef>
-
+  
+  
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
-
+  <!-- 
   <property name="skip.tests" value="true"/>
-
+   -->
   
   <!-- Compiler options -->
   
@@ -58,33 +56,6 @@
     <exclude name="**/?*.clj"/>
   </patternset>
   
-  <!-- JDK definitions -->
-  
-  <property name="jdk.bin.1.7" value="${jdk.home.1.7}/bin"/>
-  <path id="jdk.classpath.1.7">
-    <fileset dir="${jdk.home.1.7}">
-      <include name="../java-1.7.0/jre/lib/rt.jar"/>
-      <include name="../java-1.7.0/jre/lib/resources.jar"/>
-      <include name="../java-1.7.0/jre/lib/charsets.jar"/>
-      <include name="../java-1.7.0/jre/lib/jce.jar"/>
-      <include name="../java-1.7.0/jre/lib/rhino.jar"/>
-      <include name="../java-1.7.0/jre/lib/jsse.jar"/>
-      <include name="../java-1.7.0/jre/lib/management-agent.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/zipfs.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/sunec.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/localedata.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/gnome-java-bridge.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/sunjce_provider.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/dnsns.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/sunpkcs11.jar"/>
-      <include name="../java-1.7.0/jre/lib/ext/pulse-java.jar"/>
-    </fileset>
-  </path>
-  
-  <property name="project.jdk.home" value="${jdk.home.1.7}"/>
-  <property name="project.jdk.bin" value="${jdk.bin.1.7}"/>
-  <property name="project.jdk.classpath" value="jdk.classpath.1.7"/>
-  
   
   <!-- Project Libraries -->
   
@@ -119,9 +90,6 @@
   <dirname property="module.main.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.main" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.main" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.main" value="${project.jdk.classpath}"/>
   
   <property name="compiler.args.main" value="${compiler.args}"/>
   
@@ -133,7 +101,6 @@
   </path>
   
   <path id="main.module.production.classpath">
-    <path refid="${module.jdk.classpath.main}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
     <path refid="library.log4j-1.2.15.classpath"/>
@@ -149,7 +116,6 @@
   </path>
   
   <path id="main.module.classpath">
-    <path refid="${module.jdk.classpath.main}"/>
     <pathelement location="${main.output.dir}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
@@ -186,7 +152,7 @@
   
   <target name="compile.module.main.production" description="Compile module main; production classes">
     <mkdir dir="${main.output.dir}"/>
-    <javac destdir="${main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.main}/javac">
+    <javac destdir="${main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.main}"/>
       <bootclasspath refid="main.module.bootclasspath"/>
       <classpath refid="main.module.production.classpath"/>
@@ -215,9 +181,6 @@
   <dirname property="module.resources.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.resources" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.resources" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.resources" value="${project.jdk.classpath}"/>
   
   <property name="compiler.args.resources" value="${compiler.args}"/>
   
@@ -229,7 +192,6 @@
   </path>
   
   <path id="resources.module.production.classpath">
-    <path refid="${module.jdk.classpath.resources}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
     <path refid="library.log4j-1.2.15.classpath"/>
@@ -245,7 +207,6 @@
   </path>
   
   <path id="resources.module.classpath">
-    <path refid="${module.jdk.classpath.resources}"/>
     <pathelement location="${resources.output.dir}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
@@ -289,9 +250,6 @@
   <dirname property="module.test.basedir" file="${ant.file}"/>
   
   
-  <property name="module.jdk.home.test" value="${project.jdk.home}"/>
-  <property name="module.jdk.bin.test" value="${project.jdk.bin}"/>
-  <property name="module.jdk.classpath.test" value="${project.jdk.classpath}"/>
   
   <property name="compiler.args.test" value="${compiler.args}"/>
   
@@ -303,7 +261,6 @@
   </path>
   
   <path id="test.module.production.classpath">
-    <path refid="${module.jdk.classpath.test}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
     <path refid="library.log4j-1.2.15.classpath"/>
@@ -321,7 +278,6 @@
   </path>
   
   <path id="test.module.classpath">
-    <path refid="${module.jdk.classpath.test}"/>
     <pathelement location="${test.output.dir}"/>
     <path refid="library.junit-4.9.classpath"/>
     <path refid="library.hsqldb-1.8.0.10.classpath"/>
@@ -364,7 +320,7 @@
   
   <target name="compile.module.test.tests" depends="compile.module.test.production" description="compile module test; test classes" unless="skip.tests">
     <mkdir dir="${test.testoutput.dir}"/>
-    <javac destdir="${test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.test}/javac">
+    <javac destdir="${test.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
       <compilerarg line="${compiler.args.test}"/>
       <bootclasspath refid="test.module.bootclasspath"/>
       <classpath refid="test.module.classpath"/>
@@ -394,8 +350,7 @@
   <target name="build.modules" depends="init, clean, compile.module.main, compile.module.resources, compile.module.test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
-
-  <target name="test" depends="all">
+    <target name="test" depends="all">
 
         <mkdir dir="${test.output.dir}"/>
 
