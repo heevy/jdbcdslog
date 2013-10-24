@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jdbcdslog" default="all">
-
     <presetdef name="javac">
-      <javac includeantruntime="false" />
+        <javac includeantruntime="false" />
     </presetdef>
   
   <property file="build.properties"/>
@@ -60,26 +59,6 @@
   </patternset>
   
   
-  <!-- Project Libraries -->
-  
-  <path id="library.hsqldb-1.8.0.10.classpath">
-    <pathelement location="${path.variable.maven_repository}/hsqldb/hsqldb/1.8.0.10/hsqldb-1.8.0.10.jar"/>
-  </path>
-  
-  <path id="library.junit-4.9.classpath">
-    <pathelement location="${path.variable.maven_repository}/junit/junit/4.9/junit-4.9.jar"/>
-  </path>
-  
-  <path id="library.log4j-1.2.15.classpath">
-    <pathelement location="${path.variable.maven_repository}/log4j/log4j/1.2.15/log4j-1.2.15.jar"/>
-  </path>
-  
-  <path id="library.slf4j-api-1.5.10.classpath">
-    <pathelement location="${path.variable.maven_repository}/slf4j/slf4j-api/1.5.10/slf4j-api-1.5.10.jar"/>
-    <pathelement location="${path.variable.maven_repository}/slf4j/slf4j-log4j12/1.5.10/slf4j-log4j12-1.5.10.jar"/>
-  </path>
-  
-  
   <!-- Global Libraries -->
   
   
@@ -104,35 +83,31 @@
   </path>
   
   <path id="main.module.production.classpath">
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="main.runtime.production.module.classpath">
     <pathelement location="${main.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="main.module.classpath">
     <pathelement location="${main.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="main.runtime.module.classpath">
     <pathelement location="${main.testoutput.dir}"/>
     <pathelement location="${main.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   
@@ -195,35 +170,31 @@
   </path>
   
   <path id="resources.module.production.classpath">
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="resources.runtime.production.module.classpath">
     <pathelement location="${resources.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="resources.module.classpath">
     <pathelement location="${resources.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="resources.runtime.module.classpath">
     <pathelement location="${resources.testoutput.dir}"/>
     <pathelement location="${resources.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   
@@ -264,41 +235,43 @@
   </path>
   
   <path id="test.module.production.classpath">
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
     <pathelement location="${main.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="test.runtime.production.module.classpath">
     <pathelement location="${test.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
     <pathelement location="${main.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="test.module.classpath">
     <pathelement location="${test.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
     <pathelement location="${main.testoutput.dir}"/>
     <pathelement location="${main.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   <path id="test.runtime.module.classpath">
     <pathelement location="${test.testoutput.dir}"/>
     <pathelement location="${test.output.dir}"/>
-    <path refid="library.junit-4.9.classpath"/>
-    <path refid="library.hsqldb-1.8.0.10.classpath"/>
-    <path refid="library.log4j-1.2.15.classpath"/>
-    <path refid="library.slf4j-api-1.5.10.classpath"/>
     <pathelement location="${main.testoutput.dir}"/>
     <pathelement location="${main.output.dir}"/>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
   </path>
   
   
@@ -353,6 +326,8 @@
   <target name="build.modules" depends="init, clean, compile.module.main, compile.module.resources, compile.module.test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
+
     <target name="test" depends="all">
 
         <mkdir dir="${test.output.dir}"/>
