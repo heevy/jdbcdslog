@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jdbcdslog" default="all">
-  
+    <presetdef name="javac">
+        <javac includeantruntime="false" />
+    </presetdef>
   
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
@@ -252,4 +254,30 @@
   <target name="build.modules" depends="init, clean, compile.module.main, compile.module.test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
+
+    <target name="test" depends="all">
+
+        <mkdir dir="${test.output.dir}"/>
+
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath>
+                <pathelement location="${main.output.dir}"/>
+                <pathelement location="${test.output.dir}"/>
+                <pathelement path="${java.class.path}"/>
+                <pathelement path="/home/GiovanniCaruso/.m2/repository/junit/junit/4.9/junit-4.9.jar"/>
+            </classpath>
+
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="${test.testoutput.dir}">
+                <fileset dir="${module.test.basedir}/src/test/java">
+                    <include name="**/*.java"/>
+                </fileset>
+            </batchtest>
+
+        </junit>
+
+    </target>
 </project>
