@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="jdbcdslog" default="all">
-    <presetdef name="javac">
-        <javac includeantruntime="false" />
-    </presetdef>
+  
   
   <property file="build.properties"/>
   <!-- Uncomment the following property if no tests compilation is needed -->
@@ -154,71 +152,6 @@
   </target>
   
   
-  <!-- Module resources -->
-  
-  <dirname property="module.resources.basedir" file="${ant.file}"/>
-  
-  
-  
-  <property name="compiler.args.resources" value="${compiler.args}"/>
-  
-  <property name="resources.output.dir" value="${module.resources.basedir}/out/production/resources"/>
-  <property name="resources.testoutput.dir" value="${module.resources.basedir}/out/test/resources"/>
-  
-  <path id="resources.module.bootclasspath">
-    <!-- Paths to be included in compilation bootclasspath -->
-  </path>
-  
-  <path id="resources.module.production.classpath">
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
-  </path>
-  
-  <path id="resources.runtime.production.module.classpath">
-    <pathelement location="${resources.output.dir}"/>
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
-  </path>
-  
-  <path id="resources.module.classpath">
-    <pathelement location="${resources.output.dir}"/>
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
-  </path>
-  
-  <path id="resources.runtime.module.classpath">
-    <pathelement location="${resources.testoutput.dir}"/>
-    <pathelement location="${resources.output.dir}"/>
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
-  </path>
-  
-  
-  <patternset id="excluded.from.module.resources">
-    <patternset refid="ignored.files"/>
-  </patternset>
-  
-  <patternset id="excluded.from.compilation.resources">
-    <patternset refid="excluded.from.module.resources"/>
-  </patternset>
-  
-  
-  <target name="compile.module.resources" depends="compile.module.resources.production,compile.module.resources.tests" description="Compile module resources"/>
-  
-  <target name="compile.module.resources.production" description="Compile module resources; production classes"/>
-  
-  <target name="compile.module.resources.tests" depends="compile.module.resources.production" description="compile module resources; test classes" unless="skip.tests"/>
-  
-  <target name="clean.module.resources" description="cleanup module">
-    <delete dir="${resources.output.dir}"/>
-    <delete dir="${resources.testoutput.dir}"/>
-  </target>
-  
-  
   <!-- Module test -->
   
   <dirname property="module.test.basedir" file="${ant.file}"/>
@@ -243,10 +176,7 @@
   
   <path id="test.runtime.production.module.classpath">
     <pathelement location="${test.output.dir}"/>
-    <pathelement location="${main.output.dir}"/>
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <path refid="main.runtime.production.module.classpath"/>
     <fileset dir="${basedir}/lib">
       <patternset refid="library.patterns"/>
     </fileset>
@@ -264,11 +194,7 @@
   <path id="test.runtime.module.classpath">
     <pathelement location="${test.testoutput.dir}"/>
     <pathelement location="${test.output.dir}"/>
-    <pathelement location="${main.testoutput.dir}"/>
-    <pathelement location="${main.output.dir}"/>
-    <fileset dir="${basedir}/lib">
-      <patternset refid="library.patterns"/>
-    </fileset>
+    <path refid="main.runtime.module.classpath"/>
     <fileset dir="${basedir}/lib">
       <patternset refid="library.patterns"/>
     </fileset>
@@ -321,35 +247,9 @@
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.main, clean.module.resources, clean.module.test" description="cleanup all"/>
+  <target name="clean" depends="clean.module.main, clean.module.test" description="cleanup all"/>
   
-  <target name="build.modules" depends="init, clean, compile.module.main, compile.module.resources, compile.module.test" description="build all modules"/>
+  <target name="build.modules" depends="init, clean, compile.module.main, compile.module.test" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
-
-
-    <target name="test" depends="all">
-
-        <mkdir dir="${test.output.dir}"/>
-
-        <junit printsummary="yes" haltonfailure="yes">
-            <classpath>
-                <pathelement location="${main.output.dir}"/>
-                <pathelement location="${test.output.dir}"/>
-                <pathelement path="${java.class.path}"/>
-                <pathelement path="/home/GiovanniCaruso/.m2/repository/junit/junit/4.9/junit-4.9.jar"/>
-            </classpath>
-
-            <formatter type="plain"/>
-            <formatter type="xml"/>
-
-            <batchtest fork="yes" todir="${test.testoutput.dir}">
-                <fileset dir="${module.test.basedir}/src/test/java">
-                    <include name="**/*.java"/>
-                </fileset>
-            </batchtest>
-
-        </junit>
-
-    </target>
 </project>
