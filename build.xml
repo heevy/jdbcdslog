@@ -264,9 +264,10 @@
                 <pathelement location="${main.output.dir}"/>
                 <pathelement location="${test.testoutput.dir}"/>
                 <pathelement path="${basedir}/lib/junit-4.9.jar"/>
-                <pathelement path="${basedir}/lib/slf4j-api-1.5.10.jar"/>
-                <pathelement path="${basedir}/lib/slf4j-log4j12-1.5.10.jar"/>
-                <pathelement path="${basedir}/lib/log4j-1.2.15.jar"/>
+                <pathelement path="${basedir}/lib/slf4j-api-1.7.2.jar"/>
+                <pathelement path="${basedir}/lib/logback-core-1.0.13.jar"/>
+                <pathelement path="${basedir}/lib/logback-classic-1.0.13.jar"/>
+                <pathelement path="${basedir}/lib/logback-access-1.0.13.jar"/>
                 <pathelement path="${basedir}/lib/hsqldb-1.8.0.10.jar"/>
             </classpath>
 
