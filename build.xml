@@ -258,22 +258,23 @@
 
     <target name="test" depends="all">
 
-        <mkdir dir="${test.output.dir}"/>
 
-        <junit printsummary="yes" haltonfailure="yes">
+        <junit printsummary="yes" haltonfailure="no">
             <classpath>
                 <pathelement location="${main.output.dir}"/>
-                <pathelement location="${test.output.dir}"/>
-                <pathelement path="${java.class.path}"/>
-                <pathelement path="/home/GiovanniCaruso/.m2/repository/junit/junit/4.9/junit-4.9.jar"/>
+                <pathelement location="${test.testoutput.dir}"/>
+                <pathelement path="${basedir}/lib/junit-4.9.jar"/>
+                <pathelement path="${basedir}/lib/slf4j-api-1.5.10.jar"/>
+                <pathelement path="${basedir}/lib/slf4j-log4j12-1.5.10.jar"/>
+                <pathelement path="${basedir}/lib/log4j-1.2.15.jar"/>
+                <pathelement path="${basedir}/lib/hsqldb-1.8.0.10.jar"/>
             </classpath>
 
-            <formatter type="plain"/>
-            <formatter type="xml"/>
+            <formatter type="plain" usefile="false"/>
 
-            <batchtest fork="yes" todir="${test.testoutput.dir}">
+            <batchtest>
                 <fileset dir="${module.test.basedir}/src/test/java">
-                    <include name="**/*.java"/>
+                    <include name="**/*Test*"/>
                 </fileset>
             </batchtest>
 
